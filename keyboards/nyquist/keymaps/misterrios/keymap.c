@@ -22,6 +22,29 @@ enum custom_keycodes {
   GUI,
 };
 
+// German Layout Keyboard Symbols
+#define DE_QUES LSFT(KC_MINS)
+#define DE_AT RALT(KC_Q)      // @
+#define DE_EURO RALT(KC_E)    // €
+#define DE_ANGL KC_NUBS       // <
+#define DE_PIPE RALT(KC_MINS) // |
+#define DE_BSLS RALT(KC_NUBS) // /
+#define DE_TLDE RALT(KC_RBRC) // ~
+
+// German Diacriticals
+#define DE_OUML KC_SCLN       // ö
+#define DE_AUML KC_QUOT       // ä
+#define DE_UUML KC_LBRC       // ü
+#define DE_ESZT KC_MINS       // ß
+
+// german brackets
+#define DE_LCUR RALT(KC_7)    // {
+#define DE_RCUR RALT(KC_0)    // }
+#define DE_LPAR LSFT(KC_8)    // (
+#define DE_RPAR LSFT(KC_9)    // )
+#define DE_LBRC RALT(KC_8)    // [
+#define DE_RBRC RALT(KC_9)    // ]
+
 // Fillers to make layering more clear
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
@@ -56,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_COLEMAK] = LAYOUT( \
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_EQL, \
-  KC_ESC,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_NUBS, KC_RBRC, \
+  KC_ESC,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    DE_ANGL, KC_RBRC, \
   KC_TAB,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_BSLS, \
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT , \
   KC_LCTL, KC_LGUI, KC_LALT, LOWER,   KC_ENT,  KC_ENT,  KC_SPC,  KC_SPC,  RAISE,   GUI,     KC_DEL , KC_BSPC \
@@ -98,8 +121,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT( \
   KC_F12,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11, \
-  _______, _______, _______, _______, _______, _______, KC_DOWN, KC_RGHT, LSFT(KC_MINS), KC_P7,   KC_P8,   KC_P9, \
-  _______, _______, _______, _______, _______, _______, KC_LEFT, RALT(KC_Q), RALT(KC_E), KC_P4,  KC_P5,   KC_P6, \
+  _______, _______, _______, _______, _______, _______, KC_DOWN, KC_RGHT, DE_QUES, KC_P7,   KC_P8,   KC_P9, \
+  _______, _______, _______, _______, _______, _______, KC_LEFT, DE_AT,   DE_EURO, KC_P4,   KC_P5,   KC_P6, \
   _______, _______, _______, _______, _______, _______, KC_UP,   _______, _______, KC_P1,   KC_P2,   KC_P3, \
   KC_LCTL, _______, KC_LALT, _______, KC_DEL,  KC_DEL,  KC_BSPC, KC_BSPC, _______, KC_P0,   KC_PDOT, KC_PENT \
 ),
@@ -110,18 +133,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |      |      |      |  {   |   }  |      |      |  Ü   |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |Numlk |  Ä   |      |  ß   |  [   |  ]   |      |  |   |  \   |      |  Ö   |      |
+ * |Numlk |  Ä   |      |  ß   |  [   |  ]   |      |  |   |  \   |  ~   |  Ö   |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |Capslk|      |      |      |  (   |  )   |      |      | Tilde|      |      |      |
+ * |Capslk|      |      |      |  (   |  )   |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |  Delete     |  Backspace  |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT( \
-  _______, _______, _______, _______, _______, _______, _______, _______, KC_PIPE,  _______, _______, _______, \
-  _______, _______, _______, _______, RALT(KC_7), RALT(KC_0),  _______, _______, KC_LBRC,  _______, _______, _______, \
-  KC_NLCK, KC_QUOT, _______, KC_MINS, RALT(KC_8), RALT(KC_9),  RALT(KC_RBRC), RALT(KC_MINS), (RALT(KC_NUBS)), _______, KC_SCLN, _______, \
-  KC_CAPS, _______, _______, _______, LSFT(KC_8), LSFT(KC_9), _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, _______, DE_LCUR, DE_RCUR, _______, _______, DE_UUML, _______, _______, _______, \
+  KC_NLCK, DE_AUML, _______, DE_ESZT, DE_LBRC, DE_RBRC, _______, DE_PIPE, DE_BSLS, DE_TLDE, DE_OUML, _______, \
+  KC_CAPS, _______, _______, _______, DE_LPAR, DE_RPAR, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, KC_DEL,  KC_DEL,  KC_BSPC, KC_BSPC, _______, _______, _______, _______\
 ),
 
