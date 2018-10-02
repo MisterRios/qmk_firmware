@@ -6,12 +6,15 @@ extern keymap_config_t keymap_config;
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
-#define _COLEMAK 0
-#define _LOWER 1
-#define _RAISE 2
-#define _ADJUST 3
-#define _QWERTY 4
-#define _GUI 16
+
+enum layer {
+  _COLEMAK,
+  _QWERTY,
+  _LOWER,
+  _RAISE,
+  _ADJUST,
+  _GUI
+};
 
 enum custom_keycodes {
   COLEMAK = SAFE_RANGE,
