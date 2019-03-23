@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "keymap_german.h"
 
 extern keymap_config_t keymap_config;
 
@@ -13,8 +14,13 @@ enum custom_keycodes {
   LOWER,
   RAISE,
   QWERTY,
+  GUI,
   ADJUST,
 };
+
+// German Layout Keyboard Symbols
+#define DE_QUES LSFT(KC_MINS) // ?
+#define DE_TLDE RALT(KC_RBRC) // ~ (
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
