@@ -1,4 +1,9 @@
 RGBLIGHT_ENABLE = yes
 BACKLIGHT_ENABLE = yes
-BOOTLOADER = atmel-dfu
+# for pro micro
+BOOTLOADER = caterina
+# for everything else
+# BOOTLOADER = atmel-dfu
 MOUSEKEY_ENABLE = yes
+# reduces file size
+CONSOLE_ENABLE = no
