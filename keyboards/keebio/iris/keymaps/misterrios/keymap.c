@@ -6,9 +6,9 @@ extern keymap_config_t keymap_config;
 #define _COLEMAK 0
 #define _LOWER 1
 #define _RAISE 2
-#define _QWERTY 4
+#define _QWERTY 3
 #define _GUI 4
-#define _ADJUST 16
+#define _ADJUST 5
 
 enum custom_keycodes {
   COLEMAK = SAFE_RANGE,
