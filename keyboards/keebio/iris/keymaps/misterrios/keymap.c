@@ -1,7 +1,7 @@
 #include QMK_KEYBOARD_H
 #include "keymap_german.h"
 
-extern keymap_config_t keymap_config;
+// extern keymap_config_t keymap_config;
 
 #define _COLEMAK 0
 #define _LOWER 1
