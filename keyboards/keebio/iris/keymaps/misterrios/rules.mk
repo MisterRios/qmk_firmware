@@ -1,0 +1,5 @@
+OS_DETECTION_ENABLE = yes
+DEFERRED_EXEC_ENABLE = yes
+
+BOOTLOADER = atmel-dfu
+
