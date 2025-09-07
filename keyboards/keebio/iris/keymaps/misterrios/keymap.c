@@ -383,17 +383,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case BKSLS: // (backslash) ALGR(DE_SS) ALGR(KC_MINS)
       if (record->event.pressed) {
         if (detected_os == OS_MACOS) {
+          register_code(KC_LSFT);
           register_code(KC_LALT);
           register_code(KC_7);
-          } else {
+        } else {
           register_code(KC_ALGR);
           register_code(KC_MINS);
           }
       } else {
         if (detected_os == OS_MACOS) {
           unregister_code(KC_7);
-          register_code(KC_LALT);
-          } else {
+          unregister_code(KC_LALT);
+          unregister_code(KC_LSFT);
+        } else {
           unregister_code(KC_MINS);
           unregister_code(KC_ALGR);
         }
@@ -405,7 +407,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (detected_os == OS_MACOS) {
           register_code(KC_LALT);
           register_code(KC_7);
-          } else {
+        } else {
           register_code(KC_ALGR);
           register_code(KC_NUBS);
           }
@@ -413,7 +415,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (detected_os == OS_MACOS) {
           unregister_code(KC_7);
           unregister_code(KC_LALT);
-          } else {
+        } else {
           unregister_code(KC_NUBS);
           unregister_code(KC_ALGR);
         }
@@ -421,7 +423,5 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
     }
-
-
   return true;
 }
