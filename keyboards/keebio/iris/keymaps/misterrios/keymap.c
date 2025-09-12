@@ -28,6 +28,8 @@ enum custom_keycodes {
   TILDE,
   BKSLS,
   PIPE,
+  CEDILLE,
+  LOCK,
 };
 
 os_variant_t detected_os = OS_UNSURE;
@@ -49,8 +51,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //| Shift  | Y      | X      | C      | V      | B      | Alt    |        | Space  | K      | M      | ,      | .      | -      | Shift  |
      KC_LSFT, DE_Y,    KC_X,    KC_C,    KC_V,    KC_B,    ALT_OR_SUPER,      KC_SPC,  KC_K,    KC_M,    KC_COMM, KC_DOT,  DE_MINS, KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-  //                               | Super  | Lower  |Ctrl/Ent|                 | Space  | Raise  | GUI    |
-                                    KC_LGUI, LOWER,   CTL_T(KC_ENT),             KC_SPC,  RAISE,   GUI
+  //                               | Super  | Lower  |Ctrl/Ent|                 | Space  | Raise  | RALT   |
+                                    KC_LGUI, LOWER,   CTL_T(KC_ENT),             KC_SPC,  RAISE,   KC_ALGR
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -84,8 +86,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //| NumLock| ä      |        | ß      | (      | )      |                          |        | ~      | \      | |      | ö      |        |
      KC_NUM,  DE_ADIA, _______, DE_SS,   DE_LPRN, DE_RPRN,                            _______, TILDE,   BKSLS,   PIPE,    DE_ODIA, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-  //| CpLock |        |        |        | [      | ]      | Delete |        |        |        |        |        |        |        |        |
-     KC_LCAP, _______, _______, _______, LBRAC,   RBRAC,   KC_DEL,           _______, _______, _______, _______, _______, _______, _______,
+  //| CpLock |        |        | ç      | [      | ]      | Delete |        |        |        |        |        |        |        |        |
+     KC_LCAP, _______, _______, CEDILLE , LBRAC,   RBRAC,   KC_DEL,           _______, _______, _______, _______, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
   //                               |        |        | Delete |                 | Backsp |        |        |
                                     _______, _______,  KC_DEL,                    KC_BSPC, _______, _______
@@ -121,7 +123,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      RM_HUED, RM_SATD, RM_VALD, KC_MSEL, KC_VOLD, KC_VOLU, _______,          _______, KC_PGDN, MS_WHLD, KC_END,  _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
   //                               |        |        | Sleep  |                 | Lock   |        |        |
-                                    _______, _______, KC_SLEP,                   LGUI(KC_L), _______, _______
+                                    _______, _______, KC_SLEP,                   LOCK,    _______, _______
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -244,6 +246,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
     case LABRAC: // <
       if (record->event.pressed) {
         if (detected_os == OS_MACOS) {
@@ -260,6 +263,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
     case ATSGN: // @ DE_AT
       if (record->event.pressed) {
         if (detected_os == OS_MACOS) {
@@ -280,6 +284,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
     case LCBRAC: // { DE_LCBR
       if (record->event.pressed) {
         if (detected_os == OS_MACOS) {
@@ -300,6 +305,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
     case RCBRAC: // } DE_RCBR
       if (record->event.pressed) {
         if (detected_os == OS_MACOS) {
@@ -320,6 +326,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
     case LBRAC: // [ DE_LBRC
       if (record->event.pressed) {
         if (detected_os == OS_MACOS) {
@@ -340,6 +347,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
     case RBRAC: // ] DE_RBRC
       if (record->event.pressed) {
         if (detected_os == OS_MACOS) {
@@ -360,6 +368,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
     case TILDE: // ~ DE_TILD - ALGR(DE_PLUS) - ALGR(KC_RBRC)
       if (record->event.pressed) {
         if (detected_os == OS_MACOS) {
@@ -380,6 +389,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
     case BKSLS: // (backslash) ALGR(DE_SS) ALGR(KC_MINS)
       if (record->event.pressed) {
         if (detected_os == OS_MACOS) {
@@ -402,6 +412,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+
     case PIPE: // | DE_PIPE
       if (record->event.pressed) {
         if (detected_os == OS_MACOS) {
@@ -418,6 +429,52 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } else {
           unregister_code(KC_NUBS);
           unregister_code(KC_ALGR);
+        }
+      }
+      return false;
+      break;
+
+    case CEDILLE: // ç - option-c on mac, AltGR + backtick, then letter c in linux
+      if (record->event.pressed) {
+        if (detected_os == OS_MACOS) {
+          register_code(KC_LALT);
+          register_code(KC_C);
+        } else {
+          register_code(KC_ALGR);
+          register_code(KC_GRV);
+          unregister_code(KC_GRV);
+          unregister_code(KC_ALGR);
+          register_code(KC_C);
+          }
+      } else {
+        if (detected_os == OS_MACOS) {
+          unregister_code(KC_C);
+          unregister_code(KC_LALT);
+        } else {
+          unregister_code(KC_C);
+        }
+      }
+      return false;
+      break;
+
+    case LOCK: //
+      if (record->event.pressed) {
+        if (detected_os == OS_MACOS) {
+          register_code(KC_LGUI);
+          register_code(KC_LCTL);
+          register_code(KC_Q);
+        } else {
+          register_code(KC_LGUI);
+          register_code(KC_L);
+          }
+      } else {
+        if (detected_os == OS_MACOS) {
+          unregister_code(KC_LGUI);
+          unregister_code(KC_LCTL);
+          unregister_code(KC_Q);
+        } else {
+          unregister_code(KC_L);
+          unregister_code(KC_LGUI);
         }
       }
       return false;
